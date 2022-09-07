@@ -9,8 +9,9 @@ pipeline{
            steps {
                 
                    sh 'pwd'
-                   sh 'docker build .'
+                   sh 'docker build -t dockerimage .'
                    sh 'docker images ls'
+                   sh 'grype dockerimage'
                
                       }
        }
@@ -39,7 +40,6 @@ pipeline{
                    sh "sed -i 's|image_id|$image_id|g' deployment.yml"
                    sh "kubectl apply -f deployment.yml -f service.yml"
                    sh "kubectl rollout status deployment hello-deployment"
-                   
                    sh "kubectl get service hello-svc"
                 }
            }
