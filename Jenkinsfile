@@ -11,7 +11,7 @@ pipeline{
                    sh 'pwd'
                    sh 'docker build -t dockerimage .'
                    sh 'docker images ls'
-                   sh 'grype dockerimage: --scope all-layers'
+                   sh 'grype dockerimage --scope all-layers'
                       }
        }
        
